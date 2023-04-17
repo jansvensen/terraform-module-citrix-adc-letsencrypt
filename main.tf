@@ -31,8 +31,8 @@ resource "acme_registration" "le_registration" {
 #####
 resource "acme_certificate" "le_certificate" {
   account_key_pem           = acme_registration.le_registration.account_key_pem
-  common_name               = var.adc-letsencrypt-certificate.common_name
-  subject_alternative_names = var.adc-letsencrypt-certificate-san
+  common_name               = "${var.adc-letsencrypt-certificate.common_name}.${var.adc-base.fqdn_ext}"
+  subject_alternative_names = "${var.adc-letsencrypt-certificate-san}.${var.adc-base.fqdn_ext}"
 
   http_challenge {
   }
